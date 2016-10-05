@@ -8,15 +8,28 @@ def calculate(myarg):
             arg1 = stack.pop()
             result = arg1 + arg2
             stack.append(result)
-
         elif token == '-':
             arg2 = stack.pop()
             arg1 = stack.pop()
             result = arg1 - arg2
             stack.append(result)
+        elif token == '*':
+            arg2 = stack.pop()
+            arg1 = stack.pop()
+            result = arg1 * arg2
+            stack.append(result)
+        elif token == '/':
+            arg2 = stack.pop()
+            arg1 = stack.pop()
+            if arg2 == 0:
+                result = float("inf")
+            else:
+                result = arg1 / arg2
+            stack.append(result)
         else:
             stack.append(int(token))
-        
+        if len(stack) != 1:
+            raise TypeError("Too many parameters")
     return stack.pop()
 
 def main():
